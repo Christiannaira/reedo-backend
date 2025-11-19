@@ -32,16 +32,10 @@ public class Users {
 
     public Users() {}
 
-    public Users(Long id, String username, String email, String password, String firstName, String lastName,
-                 String address, String phoneNumber) {
-        this.id = id;
+    public Users(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {

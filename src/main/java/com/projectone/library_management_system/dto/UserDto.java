@@ -2,6 +2,18 @@ package com.projectone.library_management_system.dto;
 
 public class UserDto {
 
+    private String username;
+    private String email;
+    private String passsword;
+
+    public UserDto() {}
+
+    public UserDto(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.passsword = password;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -24,18 +36,6 @@ public class UserDto {
 
     public void setPasssword(String passsword) {
         this.passsword = passsword;
-    }
-
-    private String username;
-    private String email;
-    private String passsword;
-
-    public UserDto() {}
-
-    public UserDto(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.passsword = password;
     }
 
 }
