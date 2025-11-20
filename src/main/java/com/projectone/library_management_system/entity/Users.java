@@ -38,6 +38,11 @@ public class Users {
         this.password = password;
     }
 
+    @PrePersist
+    protected void onCreate() {
+        dateCreated = LocalDateTime.now();
+    }
+
     public Long getId() {
         return id;
     }
@@ -111,10 +116,5 @@ public class Users {
     }
 
 
-
-    @PrePersist
-    protected void onCreate() {
-        dateCreated = LocalDateTime.now();
-    }
 
 }
