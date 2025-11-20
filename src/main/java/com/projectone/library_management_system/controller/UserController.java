@@ -9,6 +9,8 @@ import com.projectone.library_management_system.services.UsersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/users")
@@ -38,6 +40,11 @@ public class UserController {
     public ResponseEntity<UserResponseDto> updateUser(@PathVariable long id, @RequestBody UserProfileDto dto) {
         UserResponseDto updatedUser = usersService.updateUserProfile(id, dto);
         return ResponseEntity.ok(updatedUser);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
+        return ResponseEntity.ok(usersService.getAllUsers());
     }
 
 
