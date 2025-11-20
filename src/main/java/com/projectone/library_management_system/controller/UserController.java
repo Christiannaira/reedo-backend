@@ -33,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping("/{id}/profile")
+    @PutMapping("/{id}")
     public ResponseEntity<UserResponseDto> updateUser(@PathVariable long id, @RequestBody UserProfileDto dto) {
         UserResponseDto updatedUser = usersService.updateUserProfile(id, dto);
         return ResponseEntity.ok(updatedUser);
