@@ -40,6 +40,8 @@ public class UserMapper {
         if (dto.getLastName() != null) user.setLastName(dto.getLastName());
         if (dto.getAddress() != null) user.setAddress(dto.getAddress());
         if (dto.getPhoneNumber() != null) user.setPhoneNumber(dto.getPhoneNumber());
+        if (dto.getEmail() != null) user.setEmail(dto.getEmail());
+        if (dto.getUsername() != null) user.setUsername(dto.getUsername());
     }
 
 }
