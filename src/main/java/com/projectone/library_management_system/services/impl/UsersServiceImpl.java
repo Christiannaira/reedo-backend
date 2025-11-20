@@ -1,5 +1,6 @@
 package com.projectone.library_management_system.services.impl;
 
+import com.projectone.library_management_system.dto.UserProfileDto;
 import com.projectone.library_management_system.dto.UserRequestDto;
 import com.projectone.library_management_system.dto.UserResponseDto;
 import com.projectone.library_management_system.entity.Users;
@@ -35,6 +36,25 @@ public class UsersServiceImpl implements UsersService {
         Users user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
                 "User with ID " + id + " not found."
         ));
+
+        return UserMapper.toDto(user);
+
+    }
+
+    // Update Profile (FIRSTNAME/LASTNAME/PHONE/ADDRESS)
+    @Override
+    public UserResponseDto updateUserProfile(Long id, UserProfileDto dto) {
+
+        // Fetch existing user
+        Users user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
+                "User with ID " + id + " not found."
+        ));
+
+        // Update only provided fields
+        UserMapper.updateFromProfileDto(user, dto);
+
+        // Save updated user
+        user = userRepository.save(user);
 
         return UserMapper.toDto(user);
 
