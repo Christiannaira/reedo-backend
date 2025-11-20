@@ -9,6 +9,7 @@ import com.projectone.library_management_system.services.UsersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/users")
 public class UserController {
