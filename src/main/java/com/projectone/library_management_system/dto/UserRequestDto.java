@@ -1,5 +1,6 @@
 package com.projectone.library_management_system.dto;
 
+// contains the required fields for signup
 public class UserRequestDto {
 
     private String username;

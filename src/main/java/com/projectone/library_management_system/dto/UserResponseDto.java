@@ -2,6 +2,7 @@ package com.projectone.library_management_system.dto;
 
 import java.time.LocalDateTime;
 
+// contains what you send back to the client
 public class UserResponseDto {
 
     private String username;
