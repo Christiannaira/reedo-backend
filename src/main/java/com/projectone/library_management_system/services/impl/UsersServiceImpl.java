@@ -4,10 +4,11 @@ import com.projectone.library_management_system.dto.UserDto;
 import com.projectone.library_management_system.entity.Users;
 import com.projectone.library_management_system.mapping.UserMapper;
 import com.projectone.library_management_system.repository.UserRepository;
+import com.projectone.library_management_system.services.UsersService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsersServiceImpl {
+public class UsersServiceImpl implements UsersService {
 
     private final UserRepository userRepository;
 
