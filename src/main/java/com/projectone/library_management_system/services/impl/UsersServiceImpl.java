@@ -64,11 +64,14 @@ public class UsersServiceImpl implements UsersService {
     }
 
     // sorting data desc
+    @Override
     public List<UserResponseDto> getAllUsers() {
         return userRepository.findAllByOrderByDateCreatedDesc().stream().map(UserMapper::toDto).toList();
     }
 
-
-
+    public void deleteUser(Long id) {
+        Users user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+        userRepository.delete(user);
+    }
 
 }
