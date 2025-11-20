@@ -63,8 +63,9 @@ public class UsersServiceImpl implements UsersService {
 
     }
 
+    // sorting data desc
     public List<UserResponseDto> getAllUsers() {
-        return userRepository.findAll().stream().map(UserMapper::toDto).toList();
+        return userRepository.findAllByOrderByDateCreatedDesc().stream().map(UserMapper::toDto).toList();
     }
 
 
