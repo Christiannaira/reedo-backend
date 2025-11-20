@@ -8,6 +8,8 @@ public interface UsersService {
 
     UserResponseDto createUser(UserRequestDto dto);
 
+    public UserResponseDto getUserById(Long id);
+
 
 
 }

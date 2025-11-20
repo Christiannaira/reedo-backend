@@ -3,6 +3,7 @@ package com.projectone.library_management_system.services.impl;
 import com.projectone.library_management_system.dto.UserRequestDto;
 import com.projectone.library_management_system.dto.UserResponseDto;
 import com.projectone.library_management_system.entity.Users;
+import com.projectone.library_management_system.exception.ResourceNotFoundException;
 import com.projectone.library_management_system.mapping.UserMapper;
 import com.projectone.library_management_system.repository.UserRepository;
 import com.projectone.library_management_system.services.UsersService;
@@ -19,12 +20,26 @@ public class UsersServiceImpl implements UsersService {
         this.userRepository = userRepository;
     }
 
-
+    // Create User Business Logic
+    @Override
     public UserResponseDto createUser(UserRequestDto dto) {
         Users user = UserMapper.toEntity(dto);
         userRepository.save(user);
         return UserMapper.toDto(user);
     }
+
+    // Get User By id Business Logic
+    @Override
+    public UserResponseDto getUserById(Long id) {
+
+        Users user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
+                "User with ID " + id + " not found."
+        ));
+
+        return UserMapper.toDto(user);
+
+    }
+
 
 
 
