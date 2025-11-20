@@ -11,6 +11,9 @@ import com.projectone.library_management_system.services.UsersService;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UsersServiceImpl implements UsersService {
 
@@ -58,6 +61,10 @@ public class UsersServiceImpl implements UsersService {
 
         return UserMapper.toDto(user);
 
+    }
+
+    public List<UserResponseDto> getAllUsers() {
+        return userRepository.findAll().stream().map(UserMapper::toDto).toList();
     }
 
 
