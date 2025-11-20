@@ -1,6 +1,8 @@
 package com.projectone.library_management_system.controller;
 
 import com.projectone.library_management_system.dto.UserDto;
+import com.projectone.library_management_system.dto.UserRequestDto;
+import com.projectone.library_management_system.dto.UserResponseDto;
 import com.projectone.library_management_system.entity.Users;
 import com.projectone.library_management_system.services.UsersService;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +21,12 @@ public class UserController {
         this.usersService = usersService;
     }
 
-//    @PostMapping
-//    public ResponseEntity<UserDto> addUser(@RequestBody Users dto) {
-//        Users addedUser = usersService.createUser(dto);
-//    }
+    // signup functionality
+    @PostMapping
+    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto dto) {
+        UserResponseDto createdUser = usersService.createUser(dto);
+        return ResponseEntity.ok(createdUser);
+    }
+
 
 }
