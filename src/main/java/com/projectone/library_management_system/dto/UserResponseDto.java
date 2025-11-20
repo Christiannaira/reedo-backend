@@ -12,10 +12,12 @@ public class UserResponseDto {
     private String address;
     private String phoneNumber;
     private LocalDateTime dateCreated;
+    private String status;
+    private String role;
 
     public UserResponseDto() {}
 
-    public UserResponseDto(String username, String email, String firstName, String lastName, String address, String phoneNumber, LocalDateTime dateCreated) {
+    public UserResponseDto(String username, String email, String firstName, String lastName, String address, String phoneNumber, LocalDateTime dateCreated, String status, String role) {
         this.username = username;
         this.email = email;
         this.firstName = firstName;
@@ -23,6 +25,8 @@ public class UserResponseDto {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.dateCreated = dateCreated;
+        this.status = status;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -79,6 +83,22 @@ public class UserResponseDto {
 
     public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }

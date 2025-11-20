@@ -27,6 +27,8 @@ public class UserMapper {
        dto.setAddress(users.getAddress());
        dto.setPhoneNumber(String.valueOf(users.getPhoneNumber()));
        dto.setDateCreated(users.getDateCreated());
+       dto.setStatus(users.getStatus());
+       dto.setRole(users.getRole());
 
        return dto;
 
@@ -42,6 +44,8 @@ public class UserMapper {
         if (dto.getPhoneNumber() != null) user.setPhoneNumber(dto.getPhoneNumber());
         if (dto.getEmail() != null) user.setEmail(dto.getEmail());
         if (dto.getUsername() != null) user.setUsername(dto.getUsername());
+        if (dto.getStatus() != null) user.setStatus(dto.getStatus());
+        if (dto.getRole() != null) user.setRole(dto.getRole());
     }
 
 }

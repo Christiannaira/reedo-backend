@@ -30,6 +30,12 @@ public class Users {
     private String address;
     private String phoneNumber;
 
+    @Column(nullable = false)
+    private String status = "Not Verified";
+
+    @Column(nullable = false)
+    private String role = "User";
+
     public Users() {}
 
     public Users(String username, String email, String password) {
@@ -113,6 +119,22 @@ public class Users {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 

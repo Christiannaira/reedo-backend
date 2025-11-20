@@ -10,6 +10,9 @@ public class UserProfileDto {
     private String email;
     private String username;
 
+    private String status;
+    private String role;
+
     public String getFirstName() {
         return firstName;
     }
@@ -58,7 +61,21 @@ public class UserProfileDto {
         this.username = username;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
 
 
