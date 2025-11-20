@@ -6,10 +6,7 @@ import com.projectone.library_management_system.dto.UserResponseDto;
 import com.projectone.library_management_system.entity.Users;
 import com.projectone.library_management_system.services.UsersService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -27,6 +24,16 @@ public class UserController {
         UserResponseDto createdUser = usersService.createUser(dto);
         return ResponseEntity.ok(createdUser);
     }
+
+    // getting user functionality
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDto> getUserById(@PathVariable long id) {
+        UserResponseDto user = usersService.getUserById(id);
+        return ResponseEntity.ok(user);
+    }
+
+
+
 
 
 }
