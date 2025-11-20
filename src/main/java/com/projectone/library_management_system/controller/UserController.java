@@ -5,6 +5,7 @@ import com.projectone.library_management_system.dto.UserProfileDto;
 import com.projectone.library_management_system.dto.UserRequestDto;
 import com.projectone.library_management_system.dto.UserResponseDto;
 import com.projectone.library_management_system.entity.Users;
+import com.projectone.library_management_system.repository.UserRepository;
 import com.projectone.library_management_system.services.UsersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,11 @@ import java.util.List;
 public class UserController {
 
     private final UsersService usersService;
+    private final UserRepository userRepository;
 
-    public UserController(UsersService usersService) {
+    public UserController(UsersService usersService, UserRepository userRepository) {
         this.usersService = usersService;
+        this.userRepository = userRepository;
     }
 
     // signup functionality
