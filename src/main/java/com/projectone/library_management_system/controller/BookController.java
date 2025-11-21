@@ -8,10 +8,9 @@ import com.projectone.library_management_system.repository.BookRepository;
 import com.projectone.library_management_system.services.BooksService;
 import com.projectone.library_management_system.services.impl.BooksServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/books")
@@ -30,6 +29,11 @@ public class BookController {
     public ResponseEntity<BookResponseDto> addBook(@RequestBody BookRequestDto dto) {
         BookResponseDto addedBook = booksService.addBook(dto);
         return ResponseEntity.ok(addedBook);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BookResponseDto>> getAllBooks() {
+        return ResponseEntity.ok(booksService.getAllBooks());
     }
 
 }
