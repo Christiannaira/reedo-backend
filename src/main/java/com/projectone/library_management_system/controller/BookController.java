@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -34,6 +35,11 @@ public class BookController {
     @GetMapping
     public ResponseEntity<List<BookResponseDto>> getAllBooks() {
         return ResponseEntity.ok(booksService.getAllBooks());
+    }
+
+    @GetMapping("/count")
+    public Long getBookCount() {
+        return bookRepository.count();
     }
 
 }
