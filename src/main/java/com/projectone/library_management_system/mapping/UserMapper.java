@@ -20,6 +20,7 @@ public class UserMapper {
         if (users == null) return null;
 
        UserResponseDto dto = new UserResponseDto();
+       dto.setId(users.getId());
        dto.setUsername(users.getUsername());
        dto.setEmail(users.getEmail());
        dto.setFirstName(users.getFirstName());
@@ -38,6 +39,7 @@ public class UserMapper {
     public static void updateFromProfileDto(Users user, UserProfileDto dto) {
         if (dto == null || user == null) return;
 
+        if (dto.getId() != null) user.setId(dto.getId());
         if (dto.getFirstName() != null) user.setFirstName(dto.getFirstName());
         if (dto.getLastName() != null) user.setLastName(dto.getLastName());
         if (dto.getAddress() != null) user.setAddress(dto.getAddress());

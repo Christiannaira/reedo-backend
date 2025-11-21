@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 // contains what you send back to the client
 public class UserResponseDto {
 
+    private Long id;
     private String username;
     private String email;
     private String firstName;
@@ -17,7 +18,8 @@ public class UserResponseDto {
 
     public UserResponseDto() {}
 
-    public UserResponseDto(String username, String email, String firstName, String lastName, String address, String phoneNumber, LocalDateTime dateCreated, String status, String role) {
+    public UserResponseDto(Long id, String username, String email, String firstName, String lastName, String address, String phoneNumber, LocalDateTime dateCreated, String status, String role) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.firstName = firstName;
@@ -28,6 +30,15 @@ public class UserResponseDto {
         this.status = status;
         this.role = role;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getUsername() {
         return username;
