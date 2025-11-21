@@ -1,65 +1,30 @@
-package com.projectone.library_management_system.entity;
-
-import jakarta.persistence.*;
+package com.projectone.library_management_system.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name="books")
-public class Books {
+public class BookResponseDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String title;
-
-    @Column(nullable = false)
     private String author;
-
-    @Column(nullable = true)
     private String publisher;
-
-    @Column(nullable = true)
     private String publicationDate;
-
-    @Column(nullable = true)
     private String isbn;
-
-    @Column(nullable = true)
     private String genre;
-
-    @Column(nullable = true)
     private String language;
-
-    @Column(nullable = true)
     private Integer numberOfPages;
-
-    @Column(nullable = true)
     private String summary;
-
-    @Column(nullable = true)
     private Integer copiesAvailable;
-
-    @Column(nullable = true)
     private Integer totalCopies;
-
-    @Column(nullable = true)
     private String status;
-    @Column(nullable = true)
     private String coverImageUrl;
-
-    @ElementCollection
-    @CollectionTable(name = "book_tags", joinColumns = @JoinColumn(name = "book_id"))
-    @Column(name = "tag")
     private List<String> tags = new ArrayList<>();
 
-    public Books() {}
+    public BookResponseDto() {}
 
-    public Books(String title, String author, String publisher, String publicationDate, String isbn, String genre,
-                 String language,Integer numberOfPages, String summary, Integer copiesAvailable, Integer totalCopies, String status, String coverImageUrl, List<String> tags) {
+    public BookResponseDto(String title, String author, String publisher, String publicationDate, String isbn, String genre,
+                          String language,Integer numberOfPages, String summary, Integer copiesAvailable, Integer totalCopies, String status, String coverImageUrl, List<String> tags) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -74,7 +39,6 @@ public class Books {
         this.status = status;
         this.coverImageUrl = coverImageUrl;
         this.tags = tags;
-
     }
 
     public Long getId() {
@@ -181,12 +145,12 @@ public class Books {
         this.status = status;
     }
 
-    public String getCoverImagUrl() {
+    public String getCoverImageUrl() {
         return coverImageUrl;
     }
 
-    public void setCoverImagUrl(String coverImagUrl) {
-        this.coverImageUrl = coverImagUrl;
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
     }
 
     public List<String> getTags() {
@@ -196,4 +160,5 @@ public class Books {
     public void setTags(List<String> tags) {
         this.tags = tags;
     }
+
 }
