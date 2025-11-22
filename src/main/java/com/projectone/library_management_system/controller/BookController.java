@@ -32,6 +32,13 @@ public class BookController {
         return ResponseEntity.ok(addedBook);
     }
 
+    // getting user functionality
+    @GetMapping("/{id}")
+    public ResponseEntity<BookResponseDto> getBookById(@PathVariable long id) {
+        BookResponseDto book = booksService.getBookById(id);
+        return ResponseEntity.ok(book);
+    }
+
     @GetMapping
     public ResponseEntity<List<BookResponseDto>> getAllBooks() {
         return ResponseEntity.ok(booksService.getAllBooks());

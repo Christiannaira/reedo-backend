@@ -6,6 +6,7 @@ import com.projectone.library_management_system.dto.UserRequestDto;
 import com.projectone.library_management_system.dto.UserResponseDto;
 import com.projectone.library_management_system.entity.Books;
 import com.projectone.library_management_system.entity.Users;
+import com.projectone.library_management_system.exception.ResourceNotFoundException;
 import com.projectone.library_management_system.mapping.BookMapper;
 import com.projectone.library_management_system.mapping.UserMapper;
 import com.projectone.library_management_system.repository.BookRepository;
@@ -39,6 +40,16 @@ public class BooksServiceImpl implements BooksService {
                 .stream()
                 .map(BookMapper::toDto)
                 .toList();
+    }
+
+    // Get Book By id Business Logic
+    @Override
+    public BookResponseDto getBookById(Long id) {
+
+        Books book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
+
+        return BookMapper.toDto(book);
+
     }
 
 

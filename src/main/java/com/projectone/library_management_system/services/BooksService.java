@@ -11,4 +11,6 @@ public interface BooksService {
 
     List<BookResponseDto> getAllBooks();
 
+    BookResponseDto getBookById(Long id);
+
 }
