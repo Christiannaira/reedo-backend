@@ -14,6 +14,43 @@ public class UserProfileDto {
     private String status;
     private String role;
 
+    private String sex;
+    private Long booksBorrowed;
+    private String dateOfBirth;
+    private String referenceId;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Long getBooksBorrowed() {
+        return booksBorrowed;
+    }
+
+    public void setBooksBorrowed(Long booksBorrowed) {
+        this.booksBorrowed = booksBorrowed;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getReferenceId() {
+        return referenceId;
+    }
+
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
+    }
+
     public Long getId() {
         return id;
     }

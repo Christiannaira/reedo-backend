@@ -74,4 +74,8 @@ public class UsersServiceImpl implements UsersService {
         userRepository.delete(user);
     }
 
+    public List<Users> searchUsers(String keyword) {
+        return userRepository.findByUsernameContainingIgnoreCaseOrFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrEmailContainingIgnoreCase(keyword, keyword, keyword, keyword);
+    }
+
 }

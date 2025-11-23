@@ -61,5 +61,10 @@ public class UserController {
         return userRepository.count();
     }
 
+    @GetMapping("/search")
+    public List<Users> searchUsers(@RequestParam("keyword") String keyword) {
+        return usersService.searchUsers(keyword);
+    }
+
 
 }

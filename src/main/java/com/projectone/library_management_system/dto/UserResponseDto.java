@@ -15,10 +15,15 @@ public class UserResponseDto {
     private LocalDateTime dateCreated;
     private String status;
     private String role;
+    private String sex;
+    private Long booksBorrowed;
+    private String dateOfBirth;
+    private String referenceId;
 
     public UserResponseDto() {}
 
-    public UserResponseDto(Long id, String username, String email, String firstName, String lastName, String address, String phoneNumber, LocalDateTime dateCreated, String status, String role) {
+    public UserResponseDto(Long id, String username, String email, String firstName, String lastName, String address,
+                           String phoneNumber, LocalDateTime dateCreated, String status, String role, String sex, Long booksBorrowed, String dateOfBirth, String referenceId) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -29,6 +34,10 @@ public class UserResponseDto {
         this.dateCreated = dateCreated;
         this.status = status;
         this.role = role;
+        this.sex = sex;
+        this.booksBorrowed = booksBorrowed;
+        this.dateOfBirth = dateOfBirth;
+        this.referenceId = referenceId;
     }
 
     public Long getId() {
@@ -111,5 +120,38 @@ public class UserResponseDto {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Long getBooksBorrowed() {
+        return booksBorrowed;
+    }
+
+    public void setBooksBorrowed(Long booksBorrowed) {
+        this.booksBorrowed = booksBorrowed;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getReferenceId() {
+        return referenceId;
+    }
+
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
+    }
+
 
 }
