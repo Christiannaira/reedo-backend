@@ -52,10 +52,10 @@ public class UserMapper {
         if (dto.getUsername() != null) user.setUsername(dto.getUsername());
         if (dto.getStatus() != null) user.setStatus(dto.getStatus());
         if (dto.getRole() != null) user.setRole(dto.getRole());
-        if (dto.getRole() != null) user.setSex(dto.getSex());
-        if (dto.getRole() != null) user.setBooksBorrowed(dto.getBooksBorrowed());
-        if (dto.getRole() != null) user.setDateOfBirth(dto.getDateOfBirth());
-        if (dto.getRole() != null) user.setReferenceId(dto.getReferenceId());
+        if (dto.getSex() != null) user.setSex(dto.getSex());
+        if (dto.getBooksBorrowed() != null) user.setBooksBorrowed(dto.getBooksBorrowed());
+        if (dto.getDateOfBirth() != null) user.setDateOfBirth(dto.getDateOfBirth());
+        if (dto.getReferenceId() != null) user.setReferenceId(dto.getReferenceId());
     }
 
 }
