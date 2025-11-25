@@ -94,4 +94,19 @@ public class UsersServiceImpl implements UsersService {
 
     }
 
+    // for user login
+    public Users userLogin(String usernameOrEmail, String password) {
+
+        Optional<Users> user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail);
+
+        if (user.isPresent()) {
+            if (user.get().getPassword().equals(password) && user.get().getRole().equals("User")) {
+                return user.get();
+            }
+        }
+
+        return null;
+
+    }
+
 }

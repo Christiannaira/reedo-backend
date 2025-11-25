@@ -24,7 +24,7 @@ public interface UsersService {
 
     Users login(String usernameOrEmail, String password);
 
-
+    Users userLogin(String usernameOrEmail, String password);
 
 
 

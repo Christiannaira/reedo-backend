@@ -65,10 +65,26 @@ public class UserController {
         return usersService.searchUsers(keyword);
     }
 
+    // for admin login
     @PostMapping("/adminLogin")
     public ResponseEntity<?> login(@RequestBody LoginRequestDto request) {
 
         Users user = usersService.login(request.getUsernameOrEmail(), request.getPassword());
+
+        if (user != null) {
+            return ResponseEntity.ok("Login successful. Welcome " + user.getUsername());
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
+
+        }
+
+    }
+
+    // for user login
+    @PostMapping("/userLogin")
+    public ResponseEntity<?> userLogin(@RequestBody LoginRequestDto request) {
+
+        Users user = usersService.userLogin(request.getUsernameOrEmail(), request.getPassword());
 
         if (user != null) {
             return ResponseEntity.ok("Login successful. Welcome " + user.getUsername());
