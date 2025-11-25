@@ -22,6 +22,10 @@ public interface UsersService {
 
     List<Users> searchUsers(String keyword);
 
+    Users login(String usernameOrEmail, String password);
+
+
+
 
 
 }

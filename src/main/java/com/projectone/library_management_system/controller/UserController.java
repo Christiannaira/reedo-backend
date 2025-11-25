@@ -1,12 +1,11 @@
 package com.projectone.library_management_system.controller;
 
-import com.projectone.library_management_system.dto.UserDto;
-import com.projectone.library_management_system.dto.UserProfileDto;
-import com.projectone.library_management_system.dto.UserRequestDto;
-import com.projectone.library_management_system.dto.UserResponseDto;
+import com.projectone.library_management_system.dto.*;
 import com.projectone.library_management_system.entity.Users;
 import com.projectone.library_management_system.repository.UserRepository;
 import com.projectone.library_management_system.services.UsersService;
+import org.apache.catalina.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,6 +64,21 @@ public class UserController {
     public List<Users> searchUsers(@RequestParam("keyword") String keyword) {
         return usersService.searchUsers(keyword);
     }
+
+    @PostMapping("/adminLogin")
+    public ResponseEntity<?> login(@RequestBody LoginRequestDto request) {
+
+        Users user = usersService.login(request.getUsernameOrEmail(), request.getPassword());
+
+        if (user != null) {
+            return ResponseEntity.ok("Login successful. Welcome " + user.getUsername());
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
+
+        }
+
+    }
+
 
 
 }

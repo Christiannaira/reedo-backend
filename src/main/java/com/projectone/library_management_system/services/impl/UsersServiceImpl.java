@@ -12,6 +12,7 @@ import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -76,6 +77,21 @@ public class UsersServiceImpl implements UsersService {
 
     public List<Users> searchUsers(String keyword) {
         return userRepository.findByUsernameContainingIgnoreCaseOrFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrEmailContainingIgnoreCase(keyword, keyword, keyword, keyword);
+    }
+
+    // for admin login
+    public Users login(String usernameOrEmail, String password) {
+
+        Optional<Users> user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail);
+
+        if (user.isPresent()) {
+            if (user.get().getPassword().equals(password) && user.get().getRole().equals("Admin")) {
+                return user.get();
+            }
+        }
+
+        return null;
+
     }
 
 }
