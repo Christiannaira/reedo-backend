@@ -4,6 +4,7 @@ import com.projectone.library_management_system.dto.BookRequestDto;
 import com.projectone.library_management_system.dto.BookResponseDto;
 import com.projectone.library_management_system.dto.UserRequestDto;
 import com.projectone.library_management_system.dto.UserResponseDto;
+import com.projectone.library_management_system.entity.Books;
 import com.projectone.library_management_system.repository.BookRepository;
 import com.projectone.library_management_system.services.BooksService;
 import com.projectone.library_management_system.services.impl.BooksServiceImpl;
@@ -47,6 +48,13 @@ public class BookController {
     @GetMapping("/count")
     public Long getBookCount() {
         return bookRepository.count();
+    }
+
+    @GetMapping("/search")
+    public List<Books> searchBooks(@RequestParam("q") String query) {
+
+        String cleanedQuery = query.trim().toLowerCase();
+        return booksService.searchBooks(cleanedQuery);
     }
 
 }

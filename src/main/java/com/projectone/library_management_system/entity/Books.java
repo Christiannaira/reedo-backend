@@ -56,6 +56,9 @@ public class Books {
     @Column(name = "tag")
     private List<String> tags = new ArrayList<>();
 
+    @OneToMany(mappedBy = "book")
+    private List<BorrowHistory> borrowHistory;
+
     public Books() {}
 
     public Books(String title, String author, String publisher, String publicationDate, String isbn, String genre,

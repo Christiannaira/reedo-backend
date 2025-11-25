@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -39,6 +40,9 @@ public class Users {
 
     @Column(nullable = false)
     private String status = "Not Verified";
+
+    @OneToMany(mappedBy = "user")
+    private List<BorrowHistory> borrowHistory;
 
     public Users() {}
 
