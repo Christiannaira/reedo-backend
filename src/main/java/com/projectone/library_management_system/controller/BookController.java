@@ -52,9 +52,14 @@ public class BookController {
 
     @GetMapping("/search")
     public List<Books> searchBooks(@RequestParam("q") String query) {
-
         String cleanedQuery = query.trim().toLowerCase();
         return booksService.searchBooks(cleanedQuery);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable long id) {
+        booksService.deleteBook(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -15,6 +15,8 @@ public interface BooksService {
 
     BookResponseDto getBookById(Long id);
 
+    void deleteBook(Long id);
+
     BorrowHistory borrowBook(Long id, Long bookId);
 
     List<Books> searchBooks(String query);

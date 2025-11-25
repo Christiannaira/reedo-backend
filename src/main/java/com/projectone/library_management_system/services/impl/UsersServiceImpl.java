@@ -79,6 +79,7 @@ public class UsersServiceImpl implements UsersService {
         return userRepository.findByUsernameContainingIgnoreCaseOrFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrEmailContainingIgnoreCase(keyword, keyword, keyword, keyword);
     }
 
+    @Override
     // for admin login
     public Users login(String usernameOrEmail, String password) {
 
@@ -94,6 +95,7 @@ public class UsersServiceImpl implements UsersService {
 
     }
 
+    @Override
     // for user login
     public Users userLogin(String usernameOrEmail, String password) {
 

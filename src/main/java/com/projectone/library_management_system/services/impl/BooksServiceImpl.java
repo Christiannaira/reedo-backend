@@ -16,6 +16,7 @@ import com.projectone.library_management_system.repository.UserRepository;
 import com.projectone.library_management_system.services.BooksService;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -78,10 +79,16 @@ public class BooksServiceImpl implements BooksService {
 
     }
 
+    @Override
     public List<Books> searchBooks(String query) {
         return bookRepository.searchBooks(query.toLowerCase());
     }
 
+    @Override
+    public void deleteBook(Long id) {
+        Books book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+        bookRepository.delete(book);
+    }
 
 
 }
