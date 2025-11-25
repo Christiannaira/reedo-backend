@@ -22,6 +22,9 @@ public class Users {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String role;
+
     @Column(name = "date_created")
     private LocalDateTime dateCreated;
 
@@ -37,15 +40,13 @@ public class Users {
     @Column(nullable = false)
     private String status = "Not Verified";
 
-    @Column(nullable = false)
-    private String role = "User";
-
     public Users() {}
 
-    public Users(String username, String email, String password) {
+    public Users(String username, String email, String password, String role) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     @PrePersist

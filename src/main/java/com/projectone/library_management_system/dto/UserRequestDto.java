@@ -6,13 +6,15 @@ public class UserRequestDto {
     private String username;
     private String email;
     private String password;
+    private String role;
 
     public UserRequestDto() {}
 
-    public UserRequestDto(String username, String email, String password) {
+    public UserRequestDto(String username, String email, String password, String role) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -39,6 +41,11 @@ public class UserRequestDto {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
 
-
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
