@@ -2,6 +2,7 @@ package com.projectone.library_management_system.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,14 @@ public class Books {
     @OneToMany(mappedBy = "book")
     private List<BorrowHistory> borrowHistory;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
     public Books() {}
 
     public Books(String title, String author, String publisher, String publicationDate, String isbn, String genre,
@@ -78,6 +87,30 @@ public class Books {
         this.coverImageUrl = coverImageUrl;
         this.tags = tags;
 
+    }
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
+    }
+
+    public List<BorrowHistory> getBorrowHistory() {
+        return borrowHistory;
+    }
+
+    public void setBorrowHistory(List<BorrowHistory> borrowHistory) {
+        this.borrowHistory = borrowHistory;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Long getId() {

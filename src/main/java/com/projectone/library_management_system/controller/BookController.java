@@ -28,10 +28,43 @@ public class BookController {
     }
 
     // add book functionality
+//    @PostMapping
+//    public ResponseEntity<BookResponseDto> addBook(@RequestBody BookRequestDto dto) {
+////        BookResponseDto addedBook = booksService.addBook(dto);
+////        return ResponseEntity.ok(addedBook);
+//        try {
+//            System.out.println("📥 Incoming Book DTO: " + dto);
+//
+//            BookResponseDto addedBook = booksService.addBook(dto);
+//
+//            System.out.println("📤 Saved Book: " + addedBook);
+//
+//            return ResponseEntity.ok(addedBook);
+//
+//        } catch (Exception e) {
+//            System.out.println("❌ ERROR inside addBook:");
+//            e.printStackTrace(); // shows the real backend error in console
+//
+//            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+//        }
+//    }
     @PostMapping
-    public ResponseEntity<BookResponseDto> addBook(@RequestBody BookRequestDto dto) {
-        BookResponseDto addedBook = booksService.addBook(dto);
-        return ResponseEntity.ok(addedBook);
+    public ResponseEntity<?> addBook(@RequestBody BookRequestDto dto) {
+        try {
+            System.out.println("📥 Incoming Book DTO: " + dto);
+
+            BookResponseDto addedBook = booksService.addBook(dto);
+
+            System.out.println("📤 Saved Book: " + addedBook);
+
+            return ResponseEntity.ok(addedBook);
+
+        } catch (Exception e) {
+            System.out.println("❌ ERROR inside addBook:");
+            e.printStackTrace();
+
+            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+        }
     }
 
     // getting user functionality
