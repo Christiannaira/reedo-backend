@@ -37,6 +37,7 @@ public class BorrowHistoryServiceImpl implements BorrowHistoryService {
                 user,
                 book,
                 LocalDate.now(),
+                LocalDate.now().plusDays(7),
                 "Borrowed"
         );
 

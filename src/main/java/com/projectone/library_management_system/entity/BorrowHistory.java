@@ -27,10 +27,11 @@ public class BorrowHistory {
 
     public BorrowHistory() {}
 
-    public BorrowHistory(Users user, Books book, LocalDate borrowDate, String status) {
+    public BorrowHistory(Users user, Books book, LocalDate borrowDate, LocalDate returnDate , String status) {
         this.user = user;
         this.book = book;
         this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
         this.status = status;
     }
 
