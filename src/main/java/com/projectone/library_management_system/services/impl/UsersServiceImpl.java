@@ -112,10 +112,31 @@ public class UsersServiceImpl implements UsersService {
 
     }
 
+    @Override
     public UserResponseDto createGuest(GuestRequestDto dto) {
 
-        Users user = UserMapper.toGuestEntity(dto);
 
+        Optional<Users> existing = userRepository.findByFirstNameAndLastNameAndEmail(
+                        dto.getFirstName(),
+                        dto.getLastName(),
+                        dto.getEmail()
+                );
+
+        if (existing.isPresent()) {
+            // OPTION 1: Return existing user (no updates)
+
+            Users user = existing.get();  // THIS IS NOW VALID
+
+            user.setAddress(dto.getAddress());
+            user.setPhoneNumber(dto.getPhoneNumber());
+
+            Users saved = userRepository.save(user);
+
+            return UserMapper.toGuestDto(saved);
+
+        }
+
+        Users user = UserMapper.toGuestEntity(dto);
         userRepository.save(user);
 
         return UserMapper.toGuestDto(user);
