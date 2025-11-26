@@ -68,9 +68,9 @@ public class BookController {
     }
 
     // getting user functionality
-    @GetMapping("/{id}")
-    public ResponseEntity<BookResponseDto> getBookById(@PathVariable long id) {
-        BookResponseDto book = booksService.getBookById(id);
+    @GetMapping("/{keyword}")
+    public ResponseEntity<BookResponseDto> getBookById(@PathVariable long keyword) {
+        BookResponseDto book = booksService.getBookById(keyword);
         return ResponseEntity.ok(book);
     }
 
@@ -84,11 +84,30 @@ public class BookController {
         return bookRepository.count();
     }
 
+//    @GetMapping("/search")
+//    public List<Books> searchBooks(@RequestParam("q") String query) {
+//        String cleanedQuery = query.trim().toLowerCase();
+//        return booksService.searchBooks(cleanedQuery);
+//    }
+    //@GetMapping("/search")
+    //public ResponseEntity<List<Books>> searchBooks(@RequestParam("keyword") String keyword) {
+    //
+    //    String cleaned = keyword.trim().toLowerCase();
+    //    System.out.println("🔍 Received search keyword = " + cleaned);
+    //
+    //    return ResponseEntity.ok(booksService.searchBooks(keyword.toLowerCase().trim()));
+    //}
+
     @GetMapping("/search")
-    public List<Books> searchBooks(@RequestParam("q") String query) {
+    public List<BookResponseDto> searchBooks(@RequestParam("keyword") String query) {
         String cleanedQuery = query.trim().toLowerCase();
-        return booksService.searchBooks(cleanedQuery);
+        return booksService.searchBooksDto(cleanedQuery);
     }
+
+//@GetMapping("/search")
+//public List<BookResponseDto> search(@RequestParam String keyword) {
+//    return booksService.searchBooksDto(keyword);
+//}
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable long id) {

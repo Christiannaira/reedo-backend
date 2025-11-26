@@ -14,6 +14,7 @@ import com.projectone.library_management_system.repository.BookRepository;
 import com.projectone.library_management_system.repository.BorrowHistoryRepository;
 import com.projectone.library_management_system.repository.UserRepository;
 import com.projectone.library_management_system.services.BooksService;
+import org.hibernate.sql.ast.tree.expression.Over;
 import org.springframework.stereotype.Service;
 
 import java.awt.print.Book;
@@ -44,7 +45,7 @@ public class BooksServiceImpl implements BooksService {
     // sorting data desc
    @Override
    public List<BookResponseDto> getAllBooks() {
-        return bookRepository.findAll()
+        return bookRepository.findAllByOrderByCreatedAtDesc()
                 .stream()
                 .map(BookMapper::toDto)
                 .toList();
@@ -60,9 +61,17 @@ public class BooksServiceImpl implements BooksService {
 
     }
 
+//    @Override
+//    public List<Books> searchBooks(String query) {
+//        return bookRepository.searchBooks(query.toLowerCase());
+//    }
     @Override
-    public List<Books> searchBooks(String query) {
-        return bookRepository.searchBooks(query.toLowerCase());
+    public List<BookResponseDto> searchBooksDto(String keyword) {
+        return bookRepository.searchBooks(keyword)
+                .stream()
+                .filter(b -> b != null && b.getTitle() != null)   // prevent empty/null books
+                .map(BookMapper::toDto)                            // use your mapper
+                .toList();
     }
 
     @Override

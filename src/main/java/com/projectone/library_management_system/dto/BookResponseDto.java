@@ -1,5 +1,7 @@
 package com.projectone.library_management_system.dto;
 
+import com.projectone.library_management_system.entity.Books;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +41,9 @@ public class BookResponseDto {
         this.status = status;
         this.coverImageUrl = coverImageUrl;
         this.tags = tags;
+    }
+
+    public BookResponseDto(Books books) {
     }
 
     public Long getId() {
