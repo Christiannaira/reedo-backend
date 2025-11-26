@@ -45,6 +45,23 @@ public class BorrowHistoryController {
         return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistoryByBook(bookId));
     }
 
+    @GetMapping("/{historyId}")
+    public ResponseEntity<BorrowHistory> getById(@PathVariable Long historyId) {
+        return ResponseEntity.ok(borrowHistoryService.getBorrowHistoryById(historyId));
+    }
 
+    @DeleteMapping("/{historyId}")
+    public ResponseEntity<Void> delete(@PathVariable Long historyId) {
+        borrowHistoryService.deleteHistory(historyId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{historyId}")
+    public ResponseEntity<BorrowHistory> updateHistory(@PathVariable Long historyId, @RequestBody BorrowHistory updatedHistory) {
+
+        BorrowHistory history = borrowHistoryService.updateBorrowHistory(historyId, updatedHistory);
+        return ResponseEntity.ok(history);
+
+    }
 
 }

@@ -15,10 +15,12 @@ public interface BorrowHistoryService {
     List<BorrowHistory> getAllBorrowHistoryByBook(Long bookId);
 
 //    BorrowHistory returnBook(Long bookHistoryId);
-//
-//    void deleteHistory(Long bookId);
-//
-//    BorrowHistory getBorrowHistoryById(Long id);
+
+    void deleteHistory(Long bookId);
+
+    BorrowHistory getBorrowHistoryById(Long id);
+
+    BorrowHistory updateBorrowHistory(Long id, BorrowHistory updatedHistory);
 
 
 

@@ -59,4 +59,34 @@ public class BorrowHistoryServiceImpl implements BorrowHistoryService {
         return borrowHistoryRepository.findByBookId(bookId);
     }
 
+    @Override
+    public BorrowHistory getBorrowHistoryById(Long id) {
+        return borrowHistoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book History not found"));
+    }
+
+    @Override
+    public void deleteHistory(Long id) {
+        BorrowHistory history = getBorrowHistoryById(id);
+        borrowHistoryRepository.delete(history);
+    }
+
+    @Override
+    public BorrowHistory updateBorrowHistory(Long id, BorrowHistory updatedHistory) {
+
+        BorrowHistory existing = borrowHistoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book History not found"));
+
+        // update allowed fields
+        if (updatedHistory.getReturnDate() != null) {
+            existing.setReturnDate(updatedHistory.getReturnDate());
+        }
+
+        if (updatedHistory.getStatus() != null) {
+            existing.setStatus(updatedHistory.getStatus());
+        }
+
+        return borrowHistoryRepository.save(existing);
+
+    }
+
+
 }
