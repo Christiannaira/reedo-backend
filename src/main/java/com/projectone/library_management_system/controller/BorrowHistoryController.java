@@ -3,6 +3,8 @@ package com.projectone.library_management_system.controller;
 import com.projectone.library_management_system.entity.BorrowHistory;
 import com.projectone.library_management_system.repository.BorrowHistoryRepository;
 import com.projectone.library_management_system.services.BorrowHistoryService;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,5 +65,28 @@ public class BorrowHistoryController {
         return ResponseEntity.ok(history);
 
     }
+
+//    @GetMapping("/search")
+//    public List<BorrowHistory> searchBorrowHistory( @RequestParam(value = "search", required = false) String search) {
+//
+//        if (search != null && !search.trim().isEmpty()) {
+//            return borrowHistoryService.searchBorrowHistory(search);
+//        }
+//
+//        return borrowHistoryService.getAllBorrowHistory();
+//
+//    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<BorrowHistory>> search(
+            @RequestParam("q") String q) {
+
+        if (q == null || q.trim().isEmpty()) {
+            return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistory());
+        }
+
+        return ResponseEntity.ok(borrowHistoryService.searchBorrowHistory(q));
+    }
+
 
 }

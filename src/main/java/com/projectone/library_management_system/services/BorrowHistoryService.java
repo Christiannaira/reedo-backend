@@ -21,7 +21,10 @@ public interface BorrowHistoryService {
     BorrowHistory getBorrowHistoryById(Long id);
 
     BorrowHistory updateBorrowHistory(Long id, BorrowHistory updatedHistory);
-
+//
+//    List<BorrowHistory> searchBorrowHistory(String keyword);
+//
+    List<BorrowHistory> searchBorrowHistory(String term);
 
 
 }

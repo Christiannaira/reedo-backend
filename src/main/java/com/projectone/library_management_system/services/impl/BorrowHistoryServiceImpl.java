@@ -87,6 +87,14 @@ public class BorrowHistoryServiceImpl implements BorrowHistoryService {
         return borrowHistoryRepository.save(existing);
 
     }
+//
+//    @Override
+//    public List<BorrowHistory> searchBorrowHistory(String keyword) {
+//        return borrowHistoryRepository.searchBorrowHistory(keyword);
+//    }
 
+    public List<BorrowHistory> searchBorrowHistory(String term) {
+        return borrowHistoryRepository.searchBorrowHistory(term);
+    }
 
 }
