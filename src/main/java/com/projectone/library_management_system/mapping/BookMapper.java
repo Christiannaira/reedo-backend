@@ -36,4 +36,20 @@ public class BookMapper {
 
     }
 
+    public static void updateEntity(Books entity, BookRequestDto dto) {
+        if (dto.getTitle() != null) entity.setTitle(dto.getTitle());
+        if (dto.getAuthor() != null) entity.setAuthor(dto.getAuthor());
+        if (dto.getGenre() != null) entity.setGenre(dto.getGenre());
+        if (dto.getSummary() != null) entity.setSummary(dto.getSummary());
+        if (dto.getCopiesAvailable() != null) entity.setCopiesAvailable(dto.getCopiesAvailable());
+        if (dto.getTags() != null) entity.setTags(dto.getTags());
+        if (dto.getIsbn() != null) entity.setIsbn(dto.getIsbn());
+        if (dto.getLanguage() != null) entity.setLanguage(dto.getLanguage());
+        if (dto.getPublisher() != null) entity.setPublisher(dto.getPublisher());
+        if (dto.getTotalCopies() != null) entity.setTotalCopies(dto.getTotalCopies());
+        if (dto.getStatus() != null) entity.setStatus(dto.getStatus());
+        if (dto.getPublicationDate() != null) entity.setPublicationDate(dto.getPublicationDate());
+        if (dto.getCoverImageUrl() != null) entity.setCoverImagUrl(dto.getCoverImageUrl());
+    }
+
 }

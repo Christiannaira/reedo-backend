@@ -60,25 +60,6 @@ public class BooksServiceImpl implements BooksService {
 
     }
 
-//    @Override
-//    public BorrowHistory borrowBook(Long userId, Long bookId) {
-//
-//
-//        Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-//
-//        Books book = bookRepository.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
-//
-//        BorrowHistory borrowHistory = new BorrowHistory(
-//                user,
-//                book,
-//                LocalDate.now(),
-//                "Borrowed"
-//        );
-//
-//        return borrowHistoryRepository.save(borrowHistory);
-//
-//    }
-
     @Override
     public List<Books> searchBooks(String query) {
         return bookRepository.searchBooks(query.toLowerCase());
@@ -89,6 +70,29 @@ public class BooksServiceImpl implements BooksService {
         Books book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
         bookRepository.delete(book);
     }
+
+    @Override
+    public BookResponseDto updateBook(Long id, BookRequestDto updatedBook) {
+
+        Books existingBook = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+
+        BookMapper.updateEntity(existingBook, updatedBook);
+
+        bookRepository.save(existingBook);
+
+//        // Update fields manually
+//        existingBook.setTitle(updatedBook.getTitle());
+//        existingBook.setAuthor(updatedBook.getAuthor());
+//        existingBook.setGenre(updatedBook.getGenre());
+//        existingBook.setSummary(updatedBook.getSummary());
+//        existingBook.setCopiesAvailable(updatedBook.getCopiesAvailable());
+//        existingBook.setTags(updatedBook.getTags());
+
+        return BookMapper.toDto(existingBook);
+    }
+
+
 
 
 }
