@@ -95,6 +95,14 @@ public class UserController {
 
     }
 
+    @PostMapping("/guest")
+    public ResponseEntity<UserResponseDto> createNonUser(@RequestBody GuestRequestDto dto) {
+        System.out.println("Guest DTO received: " + dto);
+        UserResponseDto response = usersService.createGuest(dto);
+        System.out.println("Created guest: " + response);
+        return ResponseEntity.ok(response);
+    }
+
 
 
 }

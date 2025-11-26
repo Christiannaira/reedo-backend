@@ -1,9 +1,6 @@
 package com.projectone.library_management_system.mapping;
 
-import com.projectone.library_management_system.dto.UserDto;
-import com.projectone.library_management_system.dto.UserProfileDto;
-import com.projectone.library_management_system.dto.UserRequestDto;
-import com.projectone.library_management_system.dto.UserResponseDto;
+import com.projectone.library_management_system.dto.*;
 import com.projectone.library_management_system.entity.Users;
 import org.apache.catalina.User;
 
@@ -56,6 +53,34 @@ public class UserMapper {
         if (dto.getBooksBorrowed() != null) user.setBooksBorrowed(dto.getBooksBorrowed());
         if (dto.getDateOfBirth() != null) user.setDateOfBirth(dto.getDateOfBirth());
         if (dto.getReferenceId() != null) user.setReferenceId(dto.getReferenceId());
+    }
+
+    public static Users toGuestEntity(GuestRequestDto dto) {
+        Users guest = new Users();
+        guest.setUsername("guest_" + + System.currentTimeMillis());
+        guest.setEmail(dto.getEmail());
+        guest.setFirstName(dto.getFirstName());
+        guest.setLastName(dto.getLastName());
+        guest.setAddress(dto.getAddress());
+        guest.setPhoneNumber(dto.getPhoneNumber());
+        guest.setRole("Guest");
+        guest.setStatus("Not Verified");
+        guest.setPassword("GUEST");
+        return guest;
+    }
+
+    public static UserResponseDto toGuestDto(Users user){
+        UserResponseDto dto = new UserResponseDto();
+        dto.setId(user.getId());
+        dto.setEmail(user.getEmail());
+        dto.setUsername(user.getUsername());
+        dto.setFirstName(user.getFirstName());
+        dto.setLastName(user.getLastName());
+        dto.setAddress(user.getAddress());
+        dto.setPhoneNumber(user.getPhoneNumber());
+        dto.setRole(user.getRole());
+        dto.setStatus(user.getStatus());
+        return dto;
     }
 
 }

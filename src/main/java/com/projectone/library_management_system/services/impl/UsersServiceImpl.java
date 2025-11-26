@@ -1,5 +1,6 @@
 package com.projectone.library_management_system.services.impl;
 
+import com.projectone.library_management_system.dto.GuestRequestDto;
 import com.projectone.library_management_system.dto.UserProfileDto;
 import com.projectone.library_management_system.dto.UserRequestDto;
 import com.projectone.library_management_system.dto.UserResponseDto;
@@ -108,6 +109,16 @@ public class UsersServiceImpl implements UsersService {
         }
 
         return null;
+
+    }
+
+    public UserResponseDto createGuest(GuestRequestDto dto) {
+
+        Users user = UserMapper.toGuestEntity(dto);
+
+        userRepository.save(user);
+
+        return UserMapper.toGuestDto(user);
 
     }
 
