@@ -4,6 +4,8 @@ import com.projectone.library_management_system.dto.*;
 import com.projectone.library_management_system.entity.Users;
 import org.apache.catalina.User;
 
+import java.util.UUID;
+
 public class UserMapper {
 
     // UserDTO to User Entity
@@ -57,7 +59,7 @@ public class UserMapper {
 
     public static Users toGuestEntity(GuestRequestDto dto) {
         Users guest = new Users();
-        guest.setUsername("guest_" + + System.currentTimeMillis());
+        guest.setUsername("guest_" + UUID.randomUUID().toString().substring(0, 8));
         guest.setEmail(dto.getEmail());
         guest.setFirstName(dto.getFirstName());
         guest.setLastName(dto.getLastName());
