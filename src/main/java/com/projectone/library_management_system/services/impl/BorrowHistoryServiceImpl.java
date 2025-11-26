@@ -49,4 +49,14 @@ public class BorrowHistoryServiceImpl implements BorrowHistoryService {
         return borrowHistoryRepository.findAll();
     }
 
+    @Override
+    public List<BorrowHistory> getAllBorrowHistoryByUser(Long userId) {
+        return borrowHistoryRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<BorrowHistory> getAllBorrowHistoryByBook(Long bookId) {
+        return borrowHistoryRepository.findByBookId(bookId);
+    }
+
 }

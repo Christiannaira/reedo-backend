@@ -10,10 +10,10 @@ public interface BorrowHistoryService {
 
     List<BorrowHistory> getAllBorrowHistory();
 
-//    List<BorrowHistory> getAllBorrowHistoryByUser(Long userId);
-//
-//    List<BorrowHistory> getAllBorrowHistoryByBook(Long bookId);
-//
+    List<BorrowHistory> getAllBorrowHistoryByUser(Long userId);
+
+    List<BorrowHistory> getAllBorrowHistoryByBook(Long bookId);
+
 //    BorrowHistory returnBook(Long bookHistoryId);
 //
 //    void deleteHistory(Long bookId);

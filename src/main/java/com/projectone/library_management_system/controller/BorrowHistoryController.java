@@ -35,4 +35,16 @@ public class BorrowHistoryController {
         return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistory());
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<BorrowHistory>> getByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistoryByUser(userId));
+    }
+
+    @GetMapping("/book/{bookId}")
+    public ResponseEntity<List<BorrowHistory>> getByBook(@PathVariable Long bookId) {
+        return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistoryByBook(bookId));
+    }
+
+
+
 }
