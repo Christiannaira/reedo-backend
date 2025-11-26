@@ -17,7 +17,7 @@ public interface BooksService {
 
     void deleteBook(Long id);
 
-    BorrowHistory borrowBook(Long id, Long bookId);
+//    BorrowHistory borrowBook(Long id, Long bookId);
 
     List<Books> searchBooks(String query);
 

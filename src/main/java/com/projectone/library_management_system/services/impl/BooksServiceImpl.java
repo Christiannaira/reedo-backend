@@ -24,13 +24,13 @@ import java.util.List;
 public class BooksServiceImpl implements BooksService {
 
     private final BookRepository bookRepository;
-    private final UserRepository userRepository;
-    private final BorrowHistoryRepository borrowHistoryRepository;
+//    private final UserRepository userRepository;
+//    private final BorrowHistoryRepository borrowHistoryRepository;
 
     public BooksServiceImpl (BookRepository bookRepository, UserRepository userRepository, BorrowHistoryRepository borrowHistoryRepository) {
         this.bookRepository = bookRepository;
-        this.userRepository = userRepository;
-        this.borrowHistoryRepository = borrowHistoryRepository;
+//        this.userRepository = userRepository;
+//        this.borrowHistoryRepository = borrowHistoryRepository;
     }
 
     // Create Book Business Logic
@@ -60,24 +60,24 @@ public class BooksServiceImpl implements BooksService {
 
     }
 
-    @Override
-    public BorrowHistory borrowBook(Long userId, Long bookId) {
-
-
-        Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-
-        Books book = bookRepository.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
-
-        BorrowHistory borrowHistory = new BorrowHistory(
-                user,
-                book,
-                LocalDate.now(),
-                "Borrowed"
-        );
-
-        return borrowHistoryRepository.save(borrowHistory);
-
-    }
+//    @Override
+//    public BorrowHistory borrowBook(Long userId, Long bookId) {
+//
+//
+//        Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+//
+//        Books book = bookRepository.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
+//
+//        BorrowHistory borrowHistory = new BorrowHistory(
+//                user,
+//                book,
+//                LocalDate.now(),
+//                "Borrowed"
+//        );
+//
+//        return borrowHistoryRepository.save(borrowHistory);
+//
+//    }
 
     @Override
     public List<Books> searchBooks(String query) {
