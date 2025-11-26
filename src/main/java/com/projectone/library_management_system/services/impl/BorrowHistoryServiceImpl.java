@@ -11,6 +11,7 @@ import com.projectone.library_management_system.services.BorrowHistoryService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class BorrowHistoryServiceImpl implements BorrowHistoryService {
@@ -41,11 +42,11 @@ public class BorrowHistoryServiceImpl implements BorrowHistoryService {
 
         return borrowHistoryRepository.save(borrowHistory);
 
+    }
 
-
-
-
-
+    @Override
+    public List<BorrowHistory> getAllBorrowHistory() {
+        return borrowHistoryRepository.findAll();
     }
 
 }

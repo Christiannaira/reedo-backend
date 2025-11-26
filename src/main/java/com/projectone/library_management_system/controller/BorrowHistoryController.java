@@ -6,6 +6,8 @@ import com.projectone.library_management_system.services.BorrowHistoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/borrow")
 @CrossOrigin("*")
@@ -26,6 +28,11 @@ public class BorrowHistoryController {
         BorrowHistory borrowHistory = borrowHistoryService.borrowBookHistory(userId, bookId);
         return ResponseEntity.ok(borrowHistory);
 
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BorrowHistory>> getAll() {
+        return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistory());
     }
 
 }
