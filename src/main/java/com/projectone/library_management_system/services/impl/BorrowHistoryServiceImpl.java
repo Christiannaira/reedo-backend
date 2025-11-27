@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 public class BorrowHistoryServiceImpl implements BorrowHistoryService {
 
+    // all book service business logic interfaces
+
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
     private final BorrowHistoryRepository borrowHistoryRepository;
@@ -25,6 +27,8 @@ public class BorrowHistoryServiceImpl implements BorrowHistoryService {
         this.userRepository = userRepository;
         this.borrowHistoryRepository = borrowHistoryRepository;
     }
+
+    // Borrow Book
 
     @Override
     public BorrowHistory borrowBookHistory(Long userId, Long bookId) {
@@ -45,31 +49,43 @@ public class BorrowHistoryServiceImpl implements BorrowHistoryService {
 
     }
 
+    // Get All Borrow History
+
     @Override
     public List<BorrowHistory> getAllBorrowHistory() {
         return borrowHistoryRepository.findAll();
     }
+
+    // Get All Borrow History User
 
     @Override
     public List<BorrowHistory> getAllBorrowHistoryByUser(Long userId) {
         return borrowHistoryRepository.findByUserId(userId);
     }
 
+    // Get All Borrow History By Book
+
     @Override
     public List<BorrowHistory> getAllBorrowHistoryByBook(Long bookId) {
         return borrowHistoryRepository.findByBookId(bookId);
     }
+
+    // Get All Borrow History
 
     @Override
     public BorrowHistory getBorrowHistoryById(Long id) {
         return borrowHistoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book History not found"));
     }
 
+    // Delete Borrow History
+
     @Override
     public void deleteHistory(Long id) {
         BorrowHistory history = getBorrowHistoryById(id);
         borrowHistoryRepository.delete(history);
     }
+
+    // Update Borrow History
 
     @Override
     public BorrowHistory updateBorrowHistory(Long id, BorrowHistory updatedHistory) {
@@ -88,12 +104,10 @@ public class BorrowHistoryServiceImpl implements BorrowHistoryService {
         return borrowHistoryRepository.save(existing);
 
     }
-//
-//    @Override
-//    public List<BorrowHistory> searchBorrowHistory(String keyword) {
-//        return borrowHistoryRepository.searchBorrowHistory(keyword);
-//    }
 
+    // Search Borrow History
+
+    @Override
     public List<BorrowHistory> searchBorrowHistory(String term) {
         return borrowHistoryRepository.searchBorrowHistory(term);
     }

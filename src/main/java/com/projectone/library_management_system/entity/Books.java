@@ -10,6 +10,8 @@ import java.util.List;
 @Table(name="books")
 public class Books {
 
+    // Entities represents a database table
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -57,16 +59,20 @@ public class Books {
     @Column(name = "tag")
     private List<String> tags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book") // One user → can have many related records.
     private List<BorrowHistory> borrowHistory;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    //It tells Hibernate/Spring Data JPA to run this method automatically before the entity is saved to the database for the first time.
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
+
+    // constructor overloading
 
     public Books() {}
 
@@ -88,6 +94,8 @@ public class Books {
         this.tags = tags;
 
     }
+
+    // encapsulation
 
     public String getCoverImageUrl() {
         return coverImageUrl;

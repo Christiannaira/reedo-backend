@@ -6,6 +6,10 @@ import com.projectone.library_management_system.entity.Books;
 
 public class BookMapper {
 
+    // responsible for converting data between:
+    // Entity → ResponseDTO (when sending data to frontend)
+    //RequestDTO → Entity (when receiving data from frontend)
+
     public static Books toEntity(BookRequestDto dto) {
         if (dto == null) return null;
         return new Books(dto.getTitle(), dto.getAuthor(), dto.getPublisher(), dto.getPublicationDate(), dto.getIsbn(), dto.getGenre(),

@@ -12,13 +12,8 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Books, Long> {
 
 
-//    @Query("SELECT DISTINCT b FROM Books b LEFT JOIN b.tags t " +
-//            "WHERE LOWER(b.title) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
-//            "OR LOWER(b.author) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
-//            "OR LOWER(b.genre) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
-//            "OR LOWER(t) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
-
-//    List<Books> searchBooks(@Param("searchTerm") String searchTerm);
+    //Layer responsible for communicating with the database.
+    //In Spring Boot, repositories are built using Spring Data JPA, which automatically generates database operations
 
     @Query("SELECT DISTINCT b FROM Books b LEFT JOIN b.tags t " +
             "WHERE LOWER(b.title) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
@@ -26,9 +21,7 @@ public interface BookRepository extends JpaRepository<Books, Long> {
             "OR LOWER(b.genre) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
             "OR LOWER(t) LIKE LOWER(CONCAT('%', :keyword, '%'))")
 
-//    List<Books> searchBooks(@Param("keyword") String keyword);
 
-//    @Query("SELECT b FROM Books b WHERE LOWER(b.title) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Books> searchBooks(@Param("keyword") String keyword);
 
     List<Books> findAllByOrderByCreatedAtDesc();

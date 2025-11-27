@@ -8,6 +8,8 @@ import java.time.LocalDate;
 @Table(name = "borrow_history")
 public class BorrowHistory {
 
+    // Entities represents a database table
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,7 +18,7 @@ public class BorrowHistory {
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
-    @ManyToOne
+    @ManyToOne // Many Books → can be borrowed by one User
     @JoinColumn(name = "book_id", nullable = false)
     private Books book;
 
@@ -25,7 +27,10 @@ public class BorrowHistory {
 
     private String status;
 
+    // constructor overloading
+
     public BorrowHistory() {}
+
 
     public BorrowHistory(Users user, Books book, LocalDate borrowDate, LocalDate returnDate , String status) {
         this.user = user;
@@ -34,6 +39,8 @@ public class BorrowHistory {
         this.returnDate = returnDate;
         this.status = status;
     }
+
+    // encapsulation
 
     public Long getId() {
         return id;

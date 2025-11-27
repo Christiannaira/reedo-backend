@@ -3,6 +3,8 @@ package com.projectone.library_management_system.dto;
 // contains the required fields for signup
 public class UserRequestDto {
 
+    // used to receive data from the client (React, Android, Postman) before it is processed by your backend.
+
     private String username;
     private String email;
     private String password;

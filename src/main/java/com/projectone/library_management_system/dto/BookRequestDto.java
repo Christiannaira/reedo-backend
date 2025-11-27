@@ -7,6 +7,8 @@ import java.util.List;
 
 public class BookRequestDto {
 
+    // used to receive data from the client (React, Android, Postman, etc.) before it is processed by your backend.
+
     private String title;
     private String author;
     private String publisher;

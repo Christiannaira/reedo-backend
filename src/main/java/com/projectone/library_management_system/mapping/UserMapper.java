@@ -8,6 +8,10 @@ import java.util.UUID;
 
 public class UserMapper {
 
+    // responsible for converting data between:
+    // Entity → ResponseDTO (when sending data to frontend)
+    //RequestDTO → Entity (when receiving data from frontend)
+
     // UserDTO to User Entity
     public static Users toEntity(UserRequestDto dto) {
         if (dto == null) return null;

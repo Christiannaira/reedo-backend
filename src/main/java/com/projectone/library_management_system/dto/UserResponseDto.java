@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 // contains what you send back to the client
 public class UserResponseDto {
 
+    // used to send data back to the client, ensuring only the necessary and safe information is exposed.
+
     private Long id;
     private String username;
     private String email;

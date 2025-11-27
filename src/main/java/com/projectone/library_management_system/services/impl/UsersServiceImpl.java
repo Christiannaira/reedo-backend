@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 @Service
 public class UsersServiceImpl implements UsersService {
 
+    // all book service business logic interfaces
+
     private final UserRepository userRepository;
 
 
@@ -112,6 +114,7 @@ public class UsersServiceImpl implements UsersService {
 
     }
 
+    // for guess login
     @Override
     public UserResponseDto createGuest(GuestRequestDto dto) {
 
@@ -123,9 +126,8 @@ public class UsersServiceImpl implements UsersService {
                 );
 
         if (existing.isPresent()) {
-            // OPTION 1: Return existing user (no updates)
 
-            Users user = existing.get();  // THIS IS NOW VALID
+            Users user = existing.get();
 
             user.setAddress(dto.getAddress());
             user.setPhoneNumber(dto.getPhoneNumber());

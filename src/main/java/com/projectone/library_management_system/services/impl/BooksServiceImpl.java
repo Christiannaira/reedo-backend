@@ -24,14 +24,14 @@ import java.util.List;
 @Service
 public class BooksServiceImpl implements BooksService {
 
+    // all book service business logic interfaces
+
     private final BookRepository bookRepository;
-//    private final UserRepository userRepository;
-//    private final BorrowHistoryRepository borrowHistoryRepository;
+
 
     public BooksServiceImpl (BookRepository bookRepository, UserRepository userRepository, BorrowHistoryRepository borrowHistoryRepository) {
         this.bookRepository = bookRepository;
-//        this.userRepository = userRepository;
-//        this.borrowHistoryRepository = borrowHistoryRepository;
+
     }
 
     // Create Book Business Logic
@@ -61,25 +61,25 @@ public class BooksServiceImpl implements BooksService {
 
     }
 
-//    @Override
-//    public List<Books> searchBooks(String query) {
-//        return bookRepository.searchBooks(query.toLowerCase());
-//    }
+
+    // Search Book
     @Override
     public List<BookResponseDto> searchBooksDto(String keyword) {
         return bookRepository.searchBooks(keyword)
                 .stream()
                 .filter(b -> b != null && b.getTitle() != null)   // prevent empty/null books
-                .map(BookMapper::toDto)                            // use your mapper
+                .map(BookMapper::toDto)  // use your mapper
                 .toList();
     }
 
+    // Delete Book
     @Override
     public void deleteBook(Long id) {
         Books book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
         bookRepository.delete(book);
     }
 
+    // Update Book
     @Override
     public BookResponseDto updateBook(Long id, BookRequestDto updatedBook) {
 
@@ -90,13 +90,6 @@ public class BooksServiceImpl implements BooksService {
 
         bookRepository.save(existingBook);
 
-//        // Update fields manually
-//        existingBook.setTitle(updatedBook.getTitle());
-//        existingBook.setAuthor(updatedBook.getAuthor());
-//        existingBook.setGenre(updatedBook.getGenre());
-//        existingBook.setSummary(updatedBook.getSummary());
-//        existingBook.setCopiesAvailable(updatedBook.getCopiesAvailable());
-//        existingBook.setTags(updatedBook.getTags());
 
         return BookMapper.toDto(existingBook);
     }

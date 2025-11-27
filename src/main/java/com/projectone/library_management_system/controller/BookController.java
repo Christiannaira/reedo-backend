@@ -18,40 +18,22 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
+    // the entry point for HTTP requests (GET, POST, PUT, DELETE).
+
     private final BooksService booksService;
     private final BookRepository bookRepository;
 
-    // added a comment
+
     public BookController(BooksService booksService, BookRepository bookRepository) {
         this.booksService = booksService;
         this.bookRepository = bookRepository;
     }
 
-    // add book functionality
-//    @PostMapping
-//    public ResponseEntity<BookResponseDto> addBook(@RequestBody BookRequestDto dto) {
-////        BookResponseDto addedBook = booksService.addBook(dto);
-////        return ResponseEntity.ok(addedBook);
-//        try {
-//            System.out.println("📥 Incoming Book DTO: " + dto);
-//
-//            BookResponseDto addedBook = booksService.addBook(dto);
-//
-//            System.out.println("📤 Saved Book: " + addedBook);
-//
-//            return ResponseEntity.ok(addedBook);
-//
-//        } catch (Exception e) {
-//            System.out.println("❌ ERROR inside addBook:");
-//            e.printStackTrace(); // shows the real backend error in console
-//
-//            return ResponseEntity.status(500).body("Error: " + e.getMessage());
-//        }
-//    }
+    // ADD BOOK FUNCTIONALITY
     @PostMapping
     public ResponseEntity<?> addBook(@RequestBody BookRequestDto dto) {
         try {
-            System.out.println("📥 Incoming Book DTO: " + dto);
+            System.out.println("Incoming Book DTO: " + dto);
 
             BookResponseDto addedBook = booksService.addBook(dto);
 
@@ -60,62 +42,48 @@ public class BookController {
             return ResponseEntity.ok(addedBook);
 
         } catch (Exception e) {
-            System.out.println("❌ ERROR inside addBook:");
+            System.out.println("ERROR inside addBook:");
             e.printStackTrace();
 
             return ResponseEntity.status(500).body("Error: " + e.getMessage());
         }
     }
 
-    // getting user functionality
+    // GET BY BOOK ID FUNCTIONALITY
     @GetMapping("/{keyword}")
     public ResponseEntity<BookResponseDto> getBookById(@PathVariable long keyword) {
         BookResponseDto book = booksService.getBookById(keyword);
         return ResponseEntity.ok(book);
     }
 
+    // GET ALL BOOKS
     @GetMapping
     public ResponseEntity<List<BookResponseDto>> getAllBooks() {
         return ResponseEntity.ok(booksService.getAllBooks());
     }
 
+    // GET BOOKS COUNT
     @GetMapping("/count")
     public Long getBookCount() {
         return bookRepository.count();
     }
 
-//    @GetMapping("/search")
-//    public List<Books> searchBooks(@RequestParam("q") String query) {
-//        String cleanedQuery = query.trim().toLowerCase();
-//        return booksService.searchBooks(cleanedQuery);
-//    }
-    //@GetMapping("/search")
-    //public ResponseEntity<List<Books>> searchBooks(@RequestParam("keyword") String keyword) {
-    //
-    //    String cleaned = keyword.trim().toLowerCase();
-    //    System.out.println("🔍 Received search keyword = " + cleaned);
-    //
-    //    return ResponseEntity.ok(booksService.searchBooks(keyword.toLowerCase().trim()));
-    //}
 
+    // GET SEARCH BOOKS
     @GetMapping("/search")
     public List<BookResponseDto> searchBooks(@RequestParam("keyword") String query) {
         String cleanedQuery = query.trim().toLowerCase();
         return booksService.searchBooksDto(cleanedQuery);
     }
 
-//@GetMapping("/search")
-//public List<BookResponseDto> search(@RequestParam String keyword) {
-//    return booksService.searchBooksDto(keyword);
-//}
-
+    // DELETE A BOOK
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable long id) {
         booksService.deleteBook(id);
         return ResponseEntity.noContent().build();
     }
 
-    // Update a book
+    // UPDATE A BOOK).
     @PutMapping("/{id}")
     public ResponseEntity<BookResponseDto> updateBook(
             @PathVariable Long id,

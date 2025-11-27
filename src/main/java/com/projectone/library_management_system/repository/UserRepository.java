@@ -9,6 +9,9 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
 
+    //Layer responsible for communicating with the database.
+    //In Spring Boot, repositories are built using Spring Data JPA, which automatically generates database operations
+
     // sorting data desc
     List<Users> findAllByOrderByDateCreatedDesc();
 

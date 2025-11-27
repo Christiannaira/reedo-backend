@@ -17,6 +17,8 @@ import java.util.List;
 @CrossOrigin("*")
 public class BorrowHistoryController {
 
+    // the entry point for HTTP requests (GET, POST, PUT, DELETE).
+
     private final BorrowHistoryService borrowHistoryService;
     private final BorrowHistoryRepository borrowHistoryRepository;
 
@@ -26,6 +28,7 @@ public class BorrowHistoryController {
         this.borrowHistoryRepository = borrowHistoryRepository;
     }
 
+    // BORROW A BOOK FUNCTIONALITY
     @PostMapping("/{userId}/{bookId}")
     public ResponseEntity<BorrowHistory> borrowBook(@PathVariable Long userId, @PathVariable Long bookId) {
 
@@ -34,10 +37,7 @@ public class BorrowHistoryController {
 
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<BorrowHistory>> getAll() {
-//        return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistory());
-//    }
+    // GET ALL BOOKS HISTORY FUNCTIONALITY
     @GetMapping
     public ResponseEntity<List<BorrowHistoryDto>> getAll() {
         return ResponseEntity.ok(
@@ -48,37 +48,32 @@ public class BorrowHistoryController {
         );
     }
 
+    // GET BY BOOK USER FUNCTIONALITY
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<BorrowHistory>> getByUser(@PathVariable Long userId) {
         return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistoryByUser(userId));
     }
 
-//    @GetMapping("/user/{userId}")
-//    public ResponseEntity<List<BorrowHistoryDto>> getByUser(@PathVariable Long userId) {
-//        return ResponseEntity.ok(
-//                borrowHistoryService.getAllBorrowHistoryByUser(userId)
-//                        .stream()
-//                        .map(BorrowHistoryMapper::toDto)
-//                        .toList()
-//        );
-//    }
-
+    // GET BY USER BOOK FUNCTIONALITY
     @GetMapping("/book/{bookId}")
     public ResponseEntity<List<BorrowHistory>> getByBook(@PathVariable Long bookId) {
         return ResponseEntity.ok(borrowHistoryService.getAllBorrowHistoryByBook(bookId));
     }
 
+    // GET BOOK HISTORY BY ID FUNCTIONALITY
     @GetMapping("/{historyId}")
     public ResponseEntity<BorrowHistory> getById(@PathVariable Long historyId) {
         return ResponseEntity.ok(borrowHistoryService.getBorrowHistoryById(historyId));
     }
 
+    // DELETE BOOK HISTORY FUNCTIONALITY
     @DeleteMapping("/{historyId}")
     public ResponseEntity<Void> delete(@PathVariable Long historyId) {
         borrowHistoryService.deleteHistory(historyId);
         return ResponseEntity.noContent().build();
     }
 
+    // UPDATE BOOK HISTORY FUNCTIONALITY
     @PutMapping("/{historyId}")
     public ResponseEntity<BorrowHistory> updateHistory(@PathVariable Long historyId, @RequestBody BorrowHistory updatedHistory) {
 
@@ -87,17 +82,7 @@ public class BorrowHistoryController {
 
     }
 
-//    @GetMapping("/search")
-//    public List<BorrowHistory> searchBorrowHistory( @RequestParam(value = "search", required = false) String search) {
-//
-//        if (search != null && !search.trim().isEmpty()) {
-//            return borrowHistoryService.searchBorrowHistory(search);
-//        }
-//
-//        return borrowHistoryService.getAllBorrowHistory();
-//
-//    }
-
+    // SEARCH BOOK HISTORY FUNCTIONALITY
     @GetMapping("/search")
     public ResponseEntity<List<BorrowHistory>> search(
             @RequestParam("q") String q) {

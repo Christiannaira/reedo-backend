@@ -7,6 +7,8 @@ import java.util.List;
 
 public class BookResponseDto {
 
+    // used to send data back to the client, ensuring only the necessary and safe information is exposed.
+
     private Long id;
     private String title;
     private String author;

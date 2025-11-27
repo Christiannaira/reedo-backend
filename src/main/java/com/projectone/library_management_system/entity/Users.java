@@ -11,6 +11,8 @@ import java.util.List;
 @Table(name="users")
 public class Users {
 
+    // Entities represents a database table
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,9 +44,11 @@ public class Users {
     @Column(nullable = false)
     private String status = "Not Verified";
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @JsonIgnore // tells Jackson (JSON serializer) not to include this field in JSON output.
+    @OneToMany(mappedBy = "user") // One user → can have many related records.
     private List<BorrowHistory> borrowHistory;
+
+    // constructor overloading
 
     public Users() {}
 
@@ -55,12 +59,14 @@ public class Users {
         this.role = role;
     }
 
-
+    // It tells Hibernate/Spring Data JPA to run this method automatically before the entity is saved to the database for the first time.
 
     @PrePersist
     protected void onCreate() {
         dateCreated = LocalDateTime.now();
     }
+
+    // encapsulation
 
     public Long getId() {
         return id;

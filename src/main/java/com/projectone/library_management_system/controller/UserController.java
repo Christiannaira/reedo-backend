@@ -16,6 +16,8 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+    // the entry point for HTTP requests (GET, POST, PUT, DELETE).
+
     private final UsersService usersService;
     private final UserRepository userRepository;
 
@@ -24,48 +26,53 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    // signup functionality
+    // SIGN UP FUNCTIONALITY
     @PostMapping
     public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto dto) {
         UserResponseDto createdUser = usersService.createUser(dto);
         return ResponseEntity.ok(createdUser);
     }
 
-    // getting user functionality
+    // GETTING USER BY ID FUNCTIONALITY
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDto> getUserById(@PathVariable long id) {
         UserResponseDto user = usersService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
+    // UPDATE USER FUNCTIONALITY
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDto> updateUser(@PathVariable long id, @RequestBody UserProfileDto dto) {
         UserResponseDto updatedUser = usersService.updateUserProfile(id, dto);
         return ResponseEntity.ok(updatedUser);
     }
 
+    // GET ALL USERS FUNCTIONALITY
     @GetMapping
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
         return ResponseEntity.ok(usersService.getAllUsers());
     }
 
+    // DELETE USER FUNCTIONALITY
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable long id) {
         usersService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
+    // GET USERS COUNT FUNCTIONALITY
     @GetMapping("/count")
     public Long getUserCount() {
         return userRepository.count();
     }
 
+    // GET SEARCH USER FUNCTIONALITY
     @GetMapping("/search")
     public List<Users> searchUsers(@RequestParam("keyword") String keyword) {
         return usersService.searchUsers(keyword);
     }
 
-    // for admin login
+    // ADMIN LOGIN FUNCTIONALITY
     @PostMapping("/adminLogin")
     public ResponseEntity<?> login(@RequestBody LoginRequestDto request) {
 
@@ -80,7 +87,7 @@ public class UserController {
 
     }
 
-    // for user login
+    // USER LOGIN FUNCTIONALITY
     @PostMapping("/userLogin")
     public ResponseEntity<?> userLogin(@RequestBody LoginRequestDto request) {
 
@@ -95,6 +102,7 @@ public class UserController {
 
     }
 
+    // GUEST LOGIN FUNCTIONALITY
     @PostMapping("/guest")
     public ResponseEntity<UserResponseDto> createNonUser(@RequestBody GuestRequestDto dto) {
         System.out.println("Guest DTO received: " + dto);

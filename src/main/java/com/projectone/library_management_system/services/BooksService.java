@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface BooksService {
 
+    // all business logic interfaces
+
     BookResponseDto addBook(BookRequestDto bookRequestDto);
 
     List<BookResponseDto> getAllBooks();
@@ -17,7 +19,6 @@ public interface BooksService {
 
     void deleteBook(Long id);
 
-//    List<Books> searchBooks(String query);
 
     List<BookResponseDto> searchBooksDto(String keyword);
 
